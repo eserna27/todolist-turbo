@@ -1,0 +1,9 @@
+<%= turbo_frame_tag @list, target: "_top" do%>
+  <div class="w-25">
+    <%= form_for @list do |form| %>
+      <%= form.label :title, "Nombre de la lista", class: "form-label" %>
+      <%= form.text_field :title, class: "form-control" %>
+      <%= form.submit "Crear", class: "btn btn-primary mb-3 mt-3" %>
+    <% end %>
+  </div>
+<% end %>
