@@ -1,7 +1,11 @@
-<%= link_to list, data: { "turbo-frame": "lists" } do %>
+<%= turbo_frame_tag list, target: "_top" do %>
   <div class="card mb-2 mx-2">
-    <div class="card-body">
-      <%= list.title %>
+    <div class="card-body position-relative">
+      <%= link_to list, data: { "turbo-frame": "lists" } do %>
+        <%= list.title %>
+      <% end %>
+      <%= button_to "Borrar", list, method: :delete,
+        class: "btn btn-sm btn-danger float-end position-absolute top-50 translate-middle", style: "right: -1rem;" %>
     </div>
   </div>
 <% end %>
