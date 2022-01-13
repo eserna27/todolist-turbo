@@ -1,5 +1,7 @@
 <%= turbo_frame_tag @list, target: "_top" do%>
-  <div class="w-25">
+  <div class="mt-3 pt-3 pe-2 position-relative">
+    <%= link_to "X", "", data: { "turbo-frame": @list },
+      class: "btn btn-light position-absolute top-0 left-0", style: "right: 1rem;" %>
     <%= form_for @list do |form| %>
       <%= form.label :title, "Nombre de la lista", class: "form-label" %>
       <%= form.text_field :title, class: "form-control" %>

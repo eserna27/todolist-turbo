@@ -1,10 +1,10 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
-    @list = List.new
   end
 
   def new
+    @list = List.new
   end
 
   def create
@@ -15,6 +15,10 @@ class ListsController < ApplicationController
     else
       render status: :unprocessable_entity
     end
+  end
+
+  def show
+    @list = List.find(params[:id])
   end
 
   private
