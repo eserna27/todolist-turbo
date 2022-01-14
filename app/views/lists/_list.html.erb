@@ -4,8 +4,10 @@
       <%= link_to list, data: { "turbo-frame": "lists" } do %>
         <%= list.title %>
       <% end %>
-      <%= button_to "Borrar", list, method: :delete,
-        class: "btn btn-sm btn-danger float-end position-absolute top-50 translate-middle", style: "right: -1rem;" %>
+      <div class="position-absolute top-50 translate-middle d-flex flex-row" style="right: -3rem;">
+        <%= link_to "Editar", edit_list_path(list), class: "btn btn-sm btn-default me-2", data: { "turbo-frame": dom_id(list) }  %>
+        <%= button_to "Borrar", list, method: :delete, class: "btn btn-sm btn-danger" %>
+      </div>
     </div>
   </div>
 <% end %>
