@@ -11,7 +11,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      redirect_to lists_path
+      redirect_to lists_path, info: "Se creó la lista #{@list.title}"
     else
       render status: :unprocessable_entity
     end
@@ -23,6 +23,7 @@ class ListsController < ApplicationController
 
   def destroy
     @list = List.find(params[:id]).delete
+    redirect_to lists_path, warning: "Se elimino la lista #{@list.title}"
   end
 
   def edit
@@ -32,7 +33,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-      redirect_to lists_path
+      redirect_to lists_path, info: "Se actualizó la lista #{@list.title}"
     else
       render status: :unprocessable_entity
     end
