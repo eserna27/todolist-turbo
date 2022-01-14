@@ -23,7 +23,7 @@ class ListsController < ApplicationController
   end
 
   def destroy
-    @list = List.find(params[:id]).delete
+    @list = List.find(params[:id]).destroy
     redirect_to root_path, warning: "Se elimino la lista #{@list.title}"
   end
 

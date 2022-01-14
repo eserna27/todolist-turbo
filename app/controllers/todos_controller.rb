@@ -21,6 +21,14 @@ class TodosController < ApplicationController
     @todos = Todo.where(list_id: params[:list_id])
   end
 
+  def destroy
+    @todo = Todo.find(params[:id]).destroy
+    respond_to do |format|
+      @todos = Todo.where(list_id: @todo.list_id)
+      format.turbo_stream { render :index }
+    end
+  end
+
   private
 
   def list_params
