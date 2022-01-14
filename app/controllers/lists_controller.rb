@@ -11,18 +11,20 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      redirect_to lists_path
+      redirect_to root_path, info: "Se creó la lista #{@list.title}"
     else
       render status: :unprocessable_entity
     end
   end
 
   def show
-    @list = List.find(params[:id])
+    @list = List.preload(:todos).find(params[:id])
+    @todos = @list.todos
   end
 
   def destroy
     @list = List.find(params[:id]).delete
+    redirect_to root_path, warning: "Se elimino la lista #{@list.title}"
   end
 
   def edit
@@ -32,7 +34,7 @@ class ListsController < ApplicationController
   def update
     @list = List.find(params[:id])
     if @list.update(list_params)
-      redirect_to lists_path
+      redirect_to root_path, info: "Se actualizó la lista #{@list.title}"
     else
       render status: :unprocessable_entity
     end

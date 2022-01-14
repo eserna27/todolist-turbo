@@ -1,6 +1,0 @@
-<%= turbo_stream.remove @list do %>
-<% end %>
-
-<%= turbo_stream.update :alert do %>
-  <%= render "layouts/alert", message: "Se elimino la lista #{@list.title}" %>
-<% end %>
