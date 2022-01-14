@@ -4,7 +4,7 @@
     <%= link_to "X", "", data: { "turbo-frame": @list },
       class: "btn btn-light position-absolute top-0 left-0", style: "right: 1rem;" %>
     <%= form_for @list do |form| %>
-      <%= form.label :title, "Nombre de la lista", class: "form-label" %>
+      <%= form.label :title, "Nombre de la lista", class: "form-label", autofocus: true %>
       <%= form.text_field :title, class: "form-control" %>
       <%= form.submit btn_message, class: "btn btn-primary mb-3 mt-2" %>
     <% end %>

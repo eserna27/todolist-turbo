@@ -1,7 +1,17 @@
 <%= turbo_frame_tag :lists do %>
   <div class="card mb-2 mx-2">
     <div class="card-body">
-      <%= @list.title %>
+      <h5 class="card-title">
+        <%= @list.title %>
+        <small><%= link_to "Nueva tarea", new_todo_path(list_id: @list), class: "float-end btn btn-light", data: {"turbo-frame": "todos-form"} %></small>
+      </h5>
+      <div class="d-flex w-100 flex-column">
+        <%= turbo_frame_tag "todos-form" do %>
+        <% end %>
+        <%= turbo_frame_tag "todos", src: todos_path(list_id: @list) do %>
+          Cargando...
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

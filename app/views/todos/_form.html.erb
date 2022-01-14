@@ -1,0 +1,12 @@
+<%= turbo_frame_tag @todo do%>
+  <div class="mt-3 pt-3 px-2 position-relative">
+    <%= link_to "X", "", data: { "turbo-frame": @todo },
+      class: "btn btn-light position-absolute top-0 left-0", style: "right: 1rem;" %>
+    <%= form_for @todo do |form| %>
+      <%= form.label :name, "Nombre de la tarea", class: "form-label", autofocus: true %>
+      <%= form.text_field :name, class: "form-control" %>
+      <%= form.hidden_field :list_id %>
+      <%= form.submit "Guardar", class: "btn btn-primary mb-3 mt-2" %>
+    <% end %>
+  </div>
+<% end %>
