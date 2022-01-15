@@ -18,23 +18,21 @@ class ListsController < ApplicationController
   end
 
   def show
-    @list = List.preload(:todos).find(params[:id])
-    @todos = @list.todos
+    @todos = list.todos
   end
 
   def destroy
-    @list = List.find(params[:id]).destroy
-    redirect_to root_path, warning: "Se elimino la lista #{@list.title}"
+    list.destroy
+    redirect_to root_path, warning: "Se elimino la lista #{list.title}"
   end
 
   def edit
-    @list = List.find(params[:id])
+    @list = list
   end
 
   def update
-    @list = List.find(params[:id])
-    if @list.update(list_params)
-      redirect_to root_path, info: "Se actualizó la lista #{@list.title}"
+    if list.update(list_params)
+      redirect_to root_path, info: "Se actualizó la lista #{list.title}"
     else
       render status: :unprocessable_entity
     end
@@ -44,5 +42,9 @@ class ListsController < ApplicationController
 
   def list_params
     params.require(:list).permit(:title)
+  end
+
+  def list
+    @list ||= List.preload(:todos).find(params[:id])
   end
 end

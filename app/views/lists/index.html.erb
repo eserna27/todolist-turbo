@@ -1,10 +1,11 @@
-<%= render "lists/header", new_list_btn: true %>
-<div class="row center align-items-start justify-content-center">
-  <div class="col-12 col-md-10 col-lg-8">
-    <%= turbo_frame_tag "new_list" do %>
-    <% end %>
-  </div>
-  <div class="col-12 col-md-10 col-lg-8">
-    <%= render @lists %>
-  </div>
+<% content_for(:title, "Mis Listas") %>
+<% content_for :header do %>
+<% end %>
+
+<div class="col-12 col-md-10 col-lg-8">
+  <%= turbo_frame_tag "new_list" do %>
+  <% end %>
+</div>
+<div class="col-12 col-md-10 col-lg-8">
+  <%= render @lists %>
 </div>

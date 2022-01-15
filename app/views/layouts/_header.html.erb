@@ -1,0 +1,20 @@
+<div class="container d-flex align-items-center justify-content-center my-3">
+  <% if current_page?(root_path) %>
+    <h1 class="mx-2">
+      <%= link_to content_for(:title), root_path, class: "link-dark text-decoration-none" %>
+    </h1>
+    <%= link_to new_list_path, class: "btn btn-light float-end", data: {"turbo-frame": "new_list"} do %>
+      <i class="bi bi-plus-circle"></i> Agregar nueva
+    <% end %>
+  <% else %>
+    <%= link_to root_path, class: "btn btn-light", data: {"turbo-frame": "new_list"} do %>
+      <i class="bi bi-arrow-left"></i> regresar
+    <% end %>
+    <h1 class="mx-2">
+      <%= content_for(:title) %>
+      <%= link_to new_todo_path(list_id: @list), class: "btn btn-sm btn-secondary", data: {"turbo-frame": "todos-form"} do %>
+        <i class="bi bi-plus-circle"></i>
+      <% end %>
+    </h1>
+  <% end %>
+</div>
