@@ -1,0 +1,5 @@
+<% status_icon = todo.completed_at?? "bi-check-circle text-success" : "bi-circle text-muted" %>
+
+<%= button_to toggle_todo_path(todo), method: :patch, class: "btn btn-link" do %>
+  <i class="bi <%= status_icon %>"></i>
+<% end %>

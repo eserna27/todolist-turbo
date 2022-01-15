@@ -29,6 +29,14 @@ class TodosController < ApplicationController
     end
   end
 
+  def toggle
+    @todo = Todo.find(params[:id])
+    @todo.toggle!
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update(@todo, partial: "todos/todo", locals: { todo: @todo }) }
+    end
+  end
+
   private
 
   def list_params
