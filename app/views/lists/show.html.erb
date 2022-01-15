@@ -1,20 +1,13 @@
-<%= render "lists/header", new_list_btn: false %>
-<div class="row center align-items-start justify-content-center">
-  <div class="col-12 col-md-9 col-lg-7">
-    <%= turbo_frame_tag :lists do %>
-      <h5 class="text-center">
-        <%= @list.title %>
-        <%= link_to new_todo_path(list_id: @list), class: "btn btn-sm btn-secondary", data: {"turbo-frame": "todos-form"} do %>
-          <i class="bi bi-plus-circle"></i>
-        <% end %>
-      </h5>
-      <div class="d-flex w-100 flex-column">
-        <%= turbo_frame_tag "todos-form" do %>
-        <% end %>
-        <%= turbo_frame_tag "todos", src: todos_path(list_id: @list) do %>
-          Cargando...
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<% content_for(:title, "Lista #{@list.title}") %>
+
+<div class="col-12 col-md-9 col-lg-7">
+  <%= turbo_frame_tag :lists do %>
+    <div class="d-flex w-100 flex-column">
+      <%= turbo_frame_tag "todos-form" do %>
+      <% end %>
+      <%= turbo_frame_tag "todos", src: todos_path(list_id: @list) do %>
+        Cargando...
+      <% end %>
+    </div>
+  <% end %>
 </div>

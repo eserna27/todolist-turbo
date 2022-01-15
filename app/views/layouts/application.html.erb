@@ -13,12 +13,12 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="container">
     <header>
-      <%= content_for(:header) %>
+      <%= render "layouts/header" %>
       <%= render "layouts/alert" %>
     </header>
-    <main class="container">
+    <main class="row center align-items-start justify-content-center">
       <%= yield %>
     </main>
   </body>
