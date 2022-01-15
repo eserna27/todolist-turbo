@@ -1,4 +1,4 @@
-<%= turbo_frame_tag @todo do%>
+<%= turbo_frame_tag @todo, target: "_top" do%>
   <div class="mt-3 pt-3 px-2 position-relative">
     <%= link_to "X", "", data: { "turbo-frame": @todo },
       class: "btn btn-light position-absolute top-0 left-0", style: "right: 1rem;" %>
