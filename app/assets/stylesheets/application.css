@@ -21,3 +21,7 @@
 .field_with_errors input {
   border-color: red;
 }
+
+.text-decoration-none {
+  text-decoration: none;
+}

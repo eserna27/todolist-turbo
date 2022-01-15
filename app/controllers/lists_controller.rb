@@ -11,7 +11,7 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      redirect_to root_path, info: "Se creó la lista #{@list.title}"
+      redirect_to @list, info: "Se creó la lista #{@list.title}"
     else
       render status: :unprocessable_entity
     end

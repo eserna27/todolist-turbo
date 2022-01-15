@@ -1,5 +1,5 @@
 <% flash.each do |type, message| %>
-  <div class="alert alert-<%= type %> alert-dismissible fade show" role="alert" data-controller="alert" data-alert-target="alert">
+  <div class="container my-2 alert alert-<%= type %> alert-dismissible fade show" role="alert" data-controller="alert" data-alert-target="alert">
     <%= message %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" data-action="alert#close"></button>
   </div>

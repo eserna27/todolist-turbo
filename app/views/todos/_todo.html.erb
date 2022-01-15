@@ -1,9 +1,9 @@
-<%= turbo_frame_tag todo do %>
+<%= turbo_frame_tag todo, target: "_top" do %>
   <li class="list-group-item d-flex">
     <p class="w-75 m-0 d-flex align-items-center"><%= todo.name %></p>
     <div class="d-flex flex-row w-25 justify-content-end">
       <%= render "status", todo: todo %>
-      <%= button_to todo, method: :delete, class: "btn btn-link float-end" do %>
+      <%= button_to todo_path(todo, list_id: todo.list_id), method: :delete, class: "btn btn-link float-end" do %>
         <i class="bi bi-trash text-danger"></i>
       <% end %>
     </div>

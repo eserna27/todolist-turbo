@@ -1,19 +1,14 @@
 class TodosController < ApplicationController
   def new
-    @todo = Todo.new(list_id: params[:list_id])
+    @todo = list.todos.new
   end
 
   def create
-    @todo = Todo.new(list_params)
+    @todo = list.todos.new(list_params)
     if @todo.save
-      respond_to do |format|
-        @todos = Todo.where(list_id: list_params[:list_id])
-        format.turbo_stream { render :index }
-      end
+      redirect_to list, info: "Se creó agrego #{@todo.name}"
     else
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.update(@todo, partial: "todos/form") }
-      end
+      render status: :unprocessable_entity
     end
   end
 
@@ -22,11 +17,9 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id]).destroy
-    respond_to do |format|
-      @todos = Todo.where(list_id: @todo.list_id)
-      format.turbo_stream { render :index }
-    end
+    @todo = list.todos.find(params[:id])
+    @todo.destroy
+    redirect_to list, warning: "Se eliminó #{@todo.name}"
   end
 
   def toggle
@@ -41,5 +34,9 @@ class TodosController < ApplicationController
 
   def list_params
     params.require(:todo).permit(:name, :list_id)
+  end
+
+  def list
+    @list ||= List.preload(:todos).find(params[:list_id] || list_params[:list_id])
   end
 end
